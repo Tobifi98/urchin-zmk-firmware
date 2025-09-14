@@ -17,7 +17,6 @@
 #define SYM2 4
 #define ACCENT 5
 #define SETTINGS 6
-// -----------------
 
 &sk {
     ignore-modifiers;
@@ -42,8 +41,8 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <
-                &kp LSHIFT>, <&kp RSHIFT>, <&kp LCTRL>, <&kp RCTRL>,
-                <&kp LALT>, <&kp RALT>, <&kp LGUI>, <&kp RGUI>
+                &kp LSHIFT &kp RSHIFT &kp LCTRL &kp RCTRL
+                &kp LALT &kp RALT &kp LGUI &kp RGUI
             >;
         };
     };
@@ -68,7 +67,7 @@
         combo_ctrl_space {
             timeout-ms = <200>;
             key-positions = <12 13>;
-            bindings = <&kp LCTRL>, <&kp SPACE>;
+            bindings = <&kp LCTRL &kp SPACE>;
             layers = <BASE>;
         };
     };
@@ -76,6 +75,7 @@
     keymap {
         compatible = "zmk,keymap";
 
+        // -----------------
         // Base layer
         default_layer {
             label = "Base";
@@ -151,16 +151,16 @@
             >;
         };
 
-        // Settings
+        // Settings layer
         settings_layer {
             label = "Sett.";
             bindings = <
-                &bootloader &none &none &bt BT_CLR &bt BT_SEL_0
-                             &bt BT_SEL_3 &none &unstick &none &bootloader
-                &none &none &none &none &bt BT_SEL_1
-                             &bt BT_SEL_4 &none &none &none &none
-                &studio_unlock &none &none &none &bt BT_SEL_2
-                             &bt BT_SEL_5 &none &none &none &studio_unlock
+                &bootloader &none &none &bt BT_CLR &bt BT_SEL0
+                             &bt BT_SEL3 &none &unstick &none &bootloader
+                &none &none &none &none &bt BT_SEL1
+                             &bt BT_SEL4 &none &none &none &none
+                &studio_unlock &none &none &none &bt BT_SEL2
+                             &bt BT_SEL5 &none &none &none &studio_unlock
                                                   &none &none &none &none
             >;
         };
