@@ -20,146 +20,146 @@
 // -----------------
 
 &sk {
-    ignore-modifiers;
+	ignore-modifiers;
 };
 
  / {
-    behaviors {
-        qt: quick_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "QUICK_TAP";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            bindings = <&kp>, <&kp>;
-        };
-    };
+	behaviors {
+		qt: quick_tap {
+			compatible = "zmk,behavior-hold-tap";
+			label = "QUICK_TAP";
+			#binding-cells = <2>;
+			flavor = "hold-preferred";
+			tapping-term-ms = <200>;
+			quick-tap-ms = <200>;
+			bindings = <&kp>, <&kp>;
+		};
+	};
 
-    macros {
-        unstick: unstick {
-            label = "ZM_unstick";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LSHIFT &kp RSHIFT &kp LCTRL &kp RCTRL &kp LALT &kp RALT &kp LGUI &kp RGUI>;
-        };
-    };
+	macros {
+		unstick: unstick {
+			label = "ZM_unstick";
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			bindings = <&kp LSHIFT &kp RSHIFT &kp LCTRL &kp RCTRL &kp LALT &kp RALT &kp LGUI &kp RGUI>;
+		};
+	};
 
-    combos {
-        compatible = "zmk,combos";
-        combo_accent {
-            timeout-ms = <200>;
-            key-positions = <32 33>;
-            bindings = <&mo ACCENT>;
-        };
-        combo_sym2 {
-            timeout-ms = <200>;
-            key-positions = <31 33>;
-            bindings = <&mo SYM2>;
-        };
-        combo_settings {
-            timeout-ms = <200>;
-            key-positions = <30 31>;
-            bindings = <&mo SETTINGS>;
-        };
-        combo_ctrl_space {
-            timeout-ms = <200>;
-            key-positions = <12 13>;
-            bindings = <&kp LC(SPACE)>;
-            layers = <BASE>;
-        };
-    };
+	combos {
+		compatible = "zmk,combos";
+		combo_accent {
+			timeout-ms = <200>;
+			key-positions = <32 33>;
+			bindings = <&mo ACCENT>;
+		};
+		combo_sym2 {
+			timeout-ms = <200>;
+			key-positions = <31 33>;
+			bindings = <&mo SYM2>;
+		};
+		combo_settings {
+			timeout-ms = <200>;
+			key-positions = <30 31>;
+			bindings = <&mo SETTINGS>;
+		};
+		combo_ctrl_space {
+			timeout-ms = <200>;
+			key-positions = <12 13>;
+			bindings = <&kp LC(SPACE)>;
+			layers = <BASE>;
+		};
+	};
 
-    keymap {
-        compatible = "zmk,keymap";
+	keymap {
+		compatible = "zmk,keymap";
 
-        // Base layer (German layout handled by OS)
-        default_layer {
-            label = "Base";
-            bindings = <
-            &kp Q &kp W &kp E &kp R &kp T           &kp Z &kp U  &kp I     &kp O   &kp P 
-            &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L   &kp SEMI
-            &kp Y &kp X &kp C &kp V &kp B           &kp N &kp M  &kp COMMA &kp DOT &kp SLASH
-                            &mo EXT &qt LSHIFT SPACE           &kp SPACE &sl SYM
-            >;
-        };
+		// Base layer (German layout handled by OS)
+		default_layer {
+			label = "Base";
+			bindings = <
+			&kp Q &kp W &kp E &kp R &kp T           &kp Z &kp U &kp I &kp O &kp P
+			&kp A &kp S &kp D &kp F &kp G           &kp H &kp J &kp K &kp L &kp SEMI
+			&kp Y &kp X &kp C &kp V &kp B           &kp N &kp M &kp COMMA &kp DOT &kp SLASH
+							&mo EXT &qt LSHIFT SPACE           &kp SPACE &sl SYM
+			>;
+		};
 
-        // Numbers + symbols
-        sym_layer {
-            label = "Sym.";
-            bindings = <
-            &kp N1 &kp N2 &kp N3 &kp N4 &kp N5            &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
-            &kp GRAVE &kp DOLLAR &kp LPAR &kp LBKT &kp LCBR 
-                         &kp EQUAL &kp SLASH &kp QUOTE &kp MINUS &kp ASTRK
-            &kp NON_US_BSLH &kp PERCENT &kp RPAR &kp RBKT &kp RCBR 
-                         &kp AT &kp EXCLAMATION &kp DQUO &kp PLUS &kp SLASH
-                                                        &mo FNC  &mo SYM2       &trans &trans
-            >;
-        };
+		// Numbers + symbols
+		sym_layer {
+			label = "Sym.";
+			bindings = <
+			&kp N1 &kp N2 &kp N3 &kp N4 &kp N5        &kp N6 &kp N7 &kp N8 &kp N9 &kp N0
+			&kp GRAVE &kp DOLLAR &kp LEFT_PAREN &kp LEFT_BRACKET &kp LEFT_BRACE
+			             &kp EQUAL &kp QUESTION &kp SQUOTE &kp MINUS &kp STAR
+			&kp BSLH &kp PERCENT &kp RIGHT_PAREN &kp RIGHT_BRACKET &kp RIGHT_BRACE
+			             &kp AT &kp EXCLAMATION &kp DQUOTE &kp PLUS &kp FSLH
+														&mo FNC &mo SYM2 &trans &trans
+			>;
+		};
 
-        // Modifiers + arrows
-        ext_layer {
-            label = "Mods";
-            bindings = <
-            &kp ESC  &kp C_PREV &kp C_PP  &kp C_NEXT  &kp C_PAUSE    
-                         &kp PG_UP  &kp HOME &kp UP &kp END &kp CAPS
-            &sk LALT &sk LGUI  &sk LSHIFT  &sk LCTRL  &kp RALT             
-                         &kp PG_DN &kp LEFT  &kp DOWN  &kp RIGHT   &kp DEL
-            &kp LC(Z)  &kp LC(X) &kp LC(C) &kp TAB   &kp LC(V)          
-                         &kp LC(BSPC) &kp BSPC &trans &trans  &trans
-                                                                        &trans &kp LCTRL    &kp ENTER  &mo FNC 
-            >;
-        };
+		// Modifiers + arrows
+		ext_layer {
+			label = "Mods";
+			bindings = <
+			&kp ESC &kp C_PREV &kp C_PP &kp C_NEXT &kp C_PAUSE
+			             &kp PG_UP &kp HOME &kp UP &kp END &kp CAPS
+			&sk LALT &sk LGUI &sk LSHIFT &sk LCTRL &kp RALT
+			             &kp PG_DN &kp LEFT &kp DOWN &kp RIGHT &kp DEL
+			&kp LC(Z) &kp LC(X) &kp LC(C) &kp TAB &kp LC(V)
+			             &kp LC(BSPC) &kp BSPC &trans &trans &trans
+													 &trans &kp LCTRL &kp ENTER &mo FNC
+			>;
+		};
 
-        // Function row
-        fnc_layer {
-            label = "FRow";
-            bindings = <
-            &kp F1 &kp F2 &kp F3 &kp F4 &kp F5             &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 
-            &sk LALT &sk LGUI &sk LSHIFT &sk LCTRL &kp RALT
-                          &kp F11 &kp F12  &kp PRINTSCREEN &trans &trans
-            &none &none &none &none &none                  &none &none &none &none &none 
-                              &none &none              &none &none  
-            >;
-        };
+		// Function row
+		fnc_layer {
+			label = "FRow";
+			bindings = <
+			&kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10
+			&sk LALT &sk LGUI &sk LSHIFT &sk LCTRL &kp RALT
+			              &kp F11 &kp F12 &kp PRINTSCREEN &trans &trans
+			&none &none &none &none &none &none &none &none &none &none
+							  &none &none &none &none
+			>;
+		};
 
-        // Extra symbols
-        symbols_2_layer {
-            label = "Sym.2";
-            bindings = <
-            &kp CARET &kp MINUS &kp HASH &kp NON_US_HASH &kp NON_US_BSLH
-                         &none &none &none &none &none 
-            &kp GRAVE &kp TILDE &kp BSLH &kp PIPE &kp AMPERSAND
-                         &none &none &none &none &none
-            &none &none &none &kp MINUS &kp DOT              
-                         &none &none &none &none &none
-                                                           &none &none           &none &none 
-            >;
-        };
+		// Extra symbols
+		symbols_2_layer {
+			label = "Sym.2";
+			bindings = <
+			&kp CARET &kp UNDERSCORE &kp HASH &kp AT &kp AMPERSAND
+			             &none &none &none &none &none
+			&kp GRAVE &kp TILDE &kp BSLH &kp PIPE &kp PLUS
+			             &none &none &none &none &none
+			&none &none &none &kp MINUS &kp DOT
+			             &none &none &none &none &none
+													 &none &none &none &none
+			>;
+		};
 
-        // Accent layer (leave mostly placeholders)
-        accent_layer {
-            label = "Accent";
-            bindings = <
-            &none &none &none &none &none    &none &none &none &none &none 
-            &none &none &none &none &none    &none &none &none &none &none
-            &none &none &none &none &none    &none &none &none &none &none
-                                    &none &none        &none &none 
-            >;
-        };
+		// Accent layer
+		accent_layer {
+			label = "Accent";
+			bindings = <
+			&none &none &none &none &none &none &none &none &none &none
+			&none &none &none &none &none &none &none &none &none &none
+			&none &none &none &none &none &none &none &none &none &none
+													 &none &none &none &none
+			>;
+		};
 
-        // Settings
-        settings_layer {
-            label = "Sett.";
-            bindings = <
-                &bootloader &none &none &bt BT_CLR &bt BT_SEL 0               
-                             &bt BT_SEL 3 &none &unstick &none &bootloader 
-                &none &none &none &none      &bt BT_SEL 1                           
-                             &bt BT_SEL 4 &none &none &none &none
-                &studio_unlock &none &none &none      &bt BT_SEL 2               
-                             &bt BT_SEL 5 &none &none &none &studio_unlock
-                                        &none &none  &none &none 
-            >;
-        };
-    };
+		// Settings
+		settings_layer {
+			label = "Sett.";
+			bindings = <
+				&bootloader &none &none &bt BT_CLR &bt BT_SEL 0
+				             &bt BT_SEL 3 &none &unstick &none &bootloader
+				&none &none &none &none &bt BT_SEL 1
+				             &bt BT_SEL 4 &none &none &none &none
+				&studio_unlock &none &none &none &bt BT_SEL 2
+				             &bt BT_SEL 5 &none &none &none &studio_unlock
+													 &none &none &none &none
+			>;
+		};
+	};
 };
